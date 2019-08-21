@@ -1,0 +1,74 @@
+{
+  "name": "StarMatchGame",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "eslint": "eslint \"src/**/*.js\"",
+    "start": "concurrently \"npm run dev-server\" \"npm run dev-bundle\"",
+    "test": "jest",
+    "dev-server": "cross-env NODE_PATH=./src nodemon --exec \"babel-node src/server/server.js\" --ignore .reactful.json --ignore public/",
+    "dev-bundle": "webpack -wd",
+    "verify-tests": "jest --coverage",
+    "build-react": "cross-env NODE_ENV=production webpack --progress -p",
+    "build-node": "babel src -d build --config-file ./babel-node.config.js --copy-files",
+    "build-all": "npm install && npm run build-react && npm run build-node",
+    "prod-start": "cross-env NODE_ENV=production NODE_PATH=./build pm2 start -i max build/server/server.js --update-env --name StarMatchGameProd",
+    "prod-stop": "pm2 stop StarMatchGameProd",
+    "prod-reload": "pm2 reload --update-env StarMatchGameProd",
+    "prod-logs": "pm2 logs --update-env StarMatchGameProd"
+  },
+  "jest": {
+    "modulePaths": [
+      "./src"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>src/setupTests.js"
+    ]
+  },
+  "dependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/runtime": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "body-parser": "^1.19.0",
+    "cross-env": "^5.2.0",
+    "css-loader": "^3.2.0",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "mini-css-extract-plugin": "^0.8.0",
+    "morgan": "^1.9.1",
+    "node-sass": "^4.12.0",
+    "pm2": "^3.5.1",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "regenerator-runtime": "^0.13.3",
+    "sass-loader": "^7.3.1",
+    "serialize-javascript": "^1.8.0",
+    "style-loader": "^1.0.0",
+    "webpack": "^4.39.2",
+    "webpack-chunk-hash": "^0.6.0",
+    "webpack-cli": "^3.3.7"
+  },
+  "devDependencies": {
+    "@babel/node": "^7.5.5",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.0.2",
+    "babel-jest": "^24.9.0",
+    "concurrently": "^4.1.2",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "eslint": "^6.2.1",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.1",
+    "reactful": "^2.0.6"
+  }
+}
