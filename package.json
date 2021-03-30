@@ -1,5 +1,5 @@
 {
-  "name": "StarMatchGame",
+  "name": "star-match-game",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -11,7 +11,7 @@
     "verify-tests": "jest --coverage",
     "build-react": "cross-env NODE_ENV=production webpack --progress -p",
     "build-node": "babel src -d build --config-file ./babel-node.config.js --copy-files",
-    "build-all": "npm install && npm run build-react && npm run build-node",
+    "build-all": "yarn install && yarn run build-react && yarn run build-node",
     "prod-start": "cross-env NODE_ENV=production NODE_PATH=./build pm2 start -i max build/server/server.js --update-env --name StarMatchGameProd",
     "prod-stop": "pm2 stop StarMatchGameProd",
     "prod-reload": "pm2 reload --update-env StarMatchGameProd",
@@ -45,7 +45,7 @@
     "mini-css-extract-plugin": "^0.8.0",
     "morgan": "^1.9.1",
     "node-sass": "^4.13.1",
-    "pm2": "^3.5.1",
+    "pm2": "^4.5.5",
     "prettier": "^1.18.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
